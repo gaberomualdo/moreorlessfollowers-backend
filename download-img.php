@@ -2,6 +2,8 @@
 
 include('./auth-token.php');
 
+header("Content-type: application/json");
+
 if(isset($_SERVER['HTTP_X_AUTH_TOKEN']) && $_SERVER['HTTP_X_AUTH_TOKEN'] == $auth_token) {
   // some code used 2021-05-02 from https://github.com/restyler/inwidget/blob/master/imgproxy.php
   $url = isset($_GET['url']) ? $_GET['url'] : null;
@@ -13,6 +15,7 @@ if(isset($_SERVER['HTTP_X_AUTH_TOKEN']) && $_SERVER['HTTP_X_AUTH_TOKEN'] == $aut
   $image_download_path = './images/' . md5($url) . '.jpg';
 
   if(file_exists($image_download_path)) {
+    echo json_encode([ "message" => "Success; image already exists." ]);
     exit(0);
   }
   
@@ -31,6 +34,7 @@ if(isset($_SERVER['HTTP_X_AUTH_TOKEN']) && $_SERVER['HTTP_X_AUTH_TOKEN'] == $aut
     $image = imagescale($image, round($image_info[0] / $scaleFactor));
   }
   imagejpeg($image, $image_download_path, 20);
+  imagedestroy($image);
   echo json_encode([ "message" => "Success." ]);
 } else {
   http_response_code(401);

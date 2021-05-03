@@ -12,3 +12,4 @@ More or less followers game backend and API.
 - `get-data-last-updated.php` --> protected route used to provide the time that the data was last updated
 - `remove-old-imgs.php` --> protected route used to delete old unused cached images
 - `download-img.php` --> protected route used to download and cache images from public URLs (namely images from Instagram)
+- `get-collage-img.php` --> generates a collage of profile pictures to use on the site
