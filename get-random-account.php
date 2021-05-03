@@ -1,6 +1,7 @@
 <?php
 
 $EXCLUDED_IDS_PARAM = "excluded-ids";
+header("Access-Control-Allow-Origin: *");
 header('Content-Type: application/json');
 
 # get data
