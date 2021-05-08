@@ -1,7 +1,7 @@
 <?php
 
 $accounts = json_decode(file_get_contents('./accounts.json'), true);
-$imgsidelen = 424;
+$imgsidelen = 320;
 $sidelen = 4;
 $img = imagecreate($sidelen * $imgsidelen, $sidelen * $imgsidelen);
 $img = imagecreatetruecolor($sidelen * $imgsidelen, $sidelen * $imgsidelen);
