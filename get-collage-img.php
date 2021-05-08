@@ -2,7 +2,7 @@
 
 $accounts = json_decode(file_get_contents('./accounts.json'), true);
 $imgsidelen = 320;
-$sidelen = 5;
+$sidelen = 7;
 $img = imagecreate($sidelen * $imgsidelen, $sidelen * $imgsidelen);
 $img = imagecreatetruecolor($sidelen * $imgsidelen, $sidelen * $imgsidelen);
 $bg = imagecolorallocate ( $img, 255, 255, 255 );
@@ -24,7 +24,7 @@ foreach($accounts as $account) {
     }
   }
 }
-$final_size = 700;
+$final_size = 850;
 $img = imagescale ($img, $final_size, $final_size);
 header("Content-type: image/jpeg");
 imagejpeg($img);
