@@ -7,10 +7,6 @@ header("Content-type: application/json");
 if(isset($_SERVER['HTTP_X_AUTH_TOKEN']) && $_SERVER['HTTP_X_AUTH_TOKEN'] == $auth_token) {
   // some code used 2021-05-02 from https://github.com/restyler/inwidget/blob/master/imgproxy.php
   $url = isset($_GET['url']) ? $_GET['url'] : null;
-  
-  if (!$url || substr($url, 0, 4) != 'http' || strpos($url, 'cdninstagram.com') === FALSE) {
-    die('Please, provide correct URL');
-  }
 
   $image_download_path = './images/' . md5($url) . '.jpg';
 
@@ -22,7 +18,8 @@ if(isset($_SERVER['HTTP_X_AUTH_TOKEN']) && $_SERVER['HTTP_X_AUTH_TOKEN'] == $aut
   $image_info = getimagesize( $url );
   
   if (stripos($image_info['mime'], 'image/') === false) {
-    die('Invalid image file');
+    echo json_encode([ "message" => "Invalid image file." ]);
+    exit(0);
   }
   
   header("Content-type: ".$image_info['mime']);
